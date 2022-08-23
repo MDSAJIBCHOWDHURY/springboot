@@ -3,6 +3,7 @@ package com.tahmid.springboot.controller;
 
 import com.tahmid.springboot.exception.ResourceNotFoundException;
 import com.tahmid.springboot.model.Employee;
+import com.tahmid.springboot.model.TestJson;
 import com.tahmid.springboot.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,8 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     private EmployeeRepository employeeRepository;
+    @Autowired
+    private TestJson jsonObject;
 
     //get all employees
     @RequestMapping(value = "/get", method = RequestMethod.GET)
@@ -75,14 +78,8 @@ public class EmployeeController {
 
     //get json objects
     @RequestMapping(value = "/objects",method = RequestMethod.GET)
-    public List<Employee> getJsonObjects(@RequestBody List<Employee> employees){
-        List<Employee> updatedEmployees = new ArrayList<>();
-        updatedEmployees.addAll(employees);
-        for(int i=0;i<updatedEmployees.size();i++){
-            Employee employee = updatedEmployees.get(i);
-            employee.setId(100+i);
-        }
-        return updatedEmployees;
+    public List<TestJson> getJsonObjects(@RequestBody List<TestJson> objects){
+        return objects;
 
     }
 }
